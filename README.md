@@ -36,7 +36,7 @@ I'd like for you to choose in the preferences what your file types your Reflect 
 
 ## Image Reflect Client
 
-![Client](http://f.cl.ly/items/0I302x2k1701132D1e3z/Screen%20Shot%202012-11-03%20at%2011.42.01%20AM.png)
+![Client](http://f.cl.ly/items/0a183M3v3x1X340E1P1u/iOS%20Simulator%20Screen%20shot%202012-11-03%2010.40.54%20AM.png)
 
 I've included what I set out to build in the first place: An image reflect client.  **It is still incomplete** though.
 I will be hopefully working on it some more in the next few weeks to add in the missing features:
