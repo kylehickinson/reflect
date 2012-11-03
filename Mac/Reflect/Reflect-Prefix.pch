@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Reflect' target in the 'Reflect' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
