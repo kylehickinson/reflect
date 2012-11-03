@@ -8,7 +8,9 @@ Reflect also includes file change monitoring, and will immediately send new data
 ![Reflect Server](http://f.cl.ly/items/0I302x2k1701132D1e3z/Screen%20Shot%202012-11-03%20at%2011.42.01%20AM.png)
 
 Don't have Xcode? Don't wanna build it?
-→ The server by its lonely self can be downloaded directly [here](http://cl.ly/KcNy).
+→ The server by its lonely self can be downloaded directly [here](http://cl.ly/KdXX).
+
+Note: This direct link may not always be the latest build.  It is recommended that you clone this repo and build the server yourself.
 
 I'm hoping that if I can get the image reflect client (included in this repo) done in the next couple weeks I can release it in the App Store as a free product.
 
