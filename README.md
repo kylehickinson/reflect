@@ -3,6 +3,8 @@
 Reflect is a service that uses Bonjour discovery to allow you to send file data from your Mac to iOS devices.
 Reflect lives in your menu bar, and allows you to simply drag files into it to reflect it to one or many clients.
 
+Reflect also includes file change monitoring, and will immediately send new data to all clients upon data change.
+
 ![Reflect Server](http://f.cl.ly/items/1n2x2j0s3Z3c0x0q263i/Screen%20Shot%202012-11-03%20at%2010.38.34%20AM.png)
 
 Don't have Xcode? Don't wanna build it?
@@ -34,7 +36,7 @@ I'd like for you to choose in the preferences what your file types your Reflect 
 
 ## Image Reflect Client
 
-![Client](http://f.cl.ly/items/0a183M3v3x1X340E1P1u/iOS%20Simulator%20Screen%20shot%202012-11-03%2010.40.54%20AM.png)
+![Client](http://f.cl.ly/items/0I302x2k1701132D1e3z/Screen%20Shot%202012-11-03%20at%2011.42.01%20AM.png)
 
 I've included what I set out to build in the first place: An image reflect client.  **It is still incomplete** though.
 I will be hopefully working on it some more in the next few weeks to add in the missing features:
