@@ -5,7 +5,7 @@ Reflect lives in your menu bar, and allows you to simply drag files into it to r
 
 Reflect also includes file change monitoring, and will immediately send new data to all clients upon data change.
 
-![Reflect Server](http://f.cl.ly/items/1n2x2j0s3Z3c0x0q263i/Screen%20Shot%202012-11-03%20at%2010.38.34%20AM.png)
+![Reflect Server](http://f.cl.ly/items/0I302x2k1701132D1e3z/Screen%20Shot%202012-11-03%20at%2011.42.01%20AM.png)
 
 Don't have Xcode? Don't wanna build it?
 → The server by its lonely self can be downloaded directly [here](http://cl.ly/KcNy).
