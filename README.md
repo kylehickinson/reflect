@@ -42,14 +42,14 @@ I will be hopefully working on it some more in the next few weeks to add in the 
 * Passcode Support
 * Allow choosing of different Reflect servers if there are more then one running on your Wi-Fi network.
 * Extension of above: disconnecting from the server to choose another one.
-* Allow zooming the image (which I though I implemented but didn't work).
+* Allow zooming the image (which I thought I implemented but didn't work).
 
 It also should be known that a lot, and I mean *a lot* of error handling needs to be added to it.
 Don't be afraid to jump in and help!
 
 ## Building your own client
 
-Since the Reflect server can transfer any data you want, this opens possibilities for clients to be made for all types of data like text, images, HTML, icons, etc.  The Reflect Client project in this repo shows you have to communicate with the server through the packets that are sent.  Packet header definitions as well as packet header documentation is located in *RFPacketHeaders.h* in the server component.  This file is shared with the client via user header searching.
+Since the Reflect server can transfer any data you want, this opens possibilities for clients to be made for all types of data like text, images, HTML, icons, etc.  The Reflect Client project in this repo shows you how to communicate with the server through the packets that are sent.  Packet header definitions as well as packet header documentation is located in *RFPacketHeaders.h* in the server component.  This file is shared with the client via user header searching.
 
 ## Requirements
 
