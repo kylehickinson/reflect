@@ -206,8 +206,6 @@
 
 - (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode
 {
-    static NSMutableArray *packetLog = nil;
-    
     if (self.data == nil) {
         self.data = [[NSMutableData alloc] init];
     }

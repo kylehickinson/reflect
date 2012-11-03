@@ -88,6 +88,9 @@ typedef enum : NSInteger {
 /** The delegate */
 @property (nonatomic, weak) id<RFFileMonitorDelegate> delegate;
 
+/** `YES` if the file monitor is watching a file, `NO` otherwise. */
+@property (nonatomic, readonly, getter=isMonitoring) BOOL monitoring;
+
 /**
  Begin monitoring a file with a given path.
  

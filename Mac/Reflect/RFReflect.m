@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSImage *highlightedIcon;
 
 @property (nonatomic, strong) RFFileMonitor *fileMonitor;
+@property (nonatomic, copy) NSString *chosenPath;
 
 - (void)_setup;
 - (void)_updateRecentList;
@@ -119,13 +120,19 @@
 
 - (void)selectFileWithPath:(NSString *)path
 {
+    // Should probably add some error handling here...
+    self.chosenPath = path;
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        self.server.data = [NSData dataWithContentsOfFile:path];
+        self.server.data = [NSData dataWithContentsOfFile:self.chosenPath];
     });
     
-    [self.fileMonitor beginMonitoringForPath:path];
-    
     NSUserDefaults *userDefaults = [[NSUserDefaultsController sharedUserDefaultsController] defaults];
+    
+    if ([userDefaults boolForKey:@"watch-files"]) {
+        [self.fileMonitor beginMonitoringForPath:self.chosenPath];
+    }
+    
     NSMutableArray *recents = [[userDefaults objectForKey:@"recent-files"] mutableCopy];
     
     NSInteger idx = [recents indexOfObjectIdenticalTo:path];
@@ -245,6 +252,18 @@
     [self _updateRecentList];
 }
 
+- (void)_toggleWatchFiles:(NSMenuItem *)sender
+{
+    sender.state = !sender.state;
+    [[[NSUserDefaultsController sharedUserDefaultsController] defaults] setBool:sender.state forKey:@"watch-files"];
+    
+    if (sender.state == NSOnState && [self.chosenPath length] > 0) {
+        [self.fileMonitor beginMonitoringForPath:self.chosenPath];
+    } else {
+        [self.fileMonitor stopMonitoring];
+    }
+}
+
 - (void)_setup
 {
     NSDictionary *userDefaults = [[[NSUserDefaultsController sharedUserDefaultsController] defaults] dictionaryRepresentation];
@@ -274,6 +293,12 @@
     [self.menu addItem:startStop];
     [self.menu addItem:[NSMenuItem separatorItem]];
     [self.menu addItem:[self _recentFilesMenuItem]];
+    
+    NSMenuItem *watchFiles = [[NSMenuItem alloc] initWithTitle:@"Watch for Changes" action:@selector(_toggleWatchFiles:) keyEquivalent:@""];
+    watchFiles.target = self;
+    watchFiles.state = [userDefaults[@"watch-files"] boolValue];
+    [self.menu addItem:watchFiles];
+    
     [self.menu addItem:[NSMenuItem separatorItem]];
     [self.menu addItemWithTitle:@"Preferences…" action:@selector(_showPreferences:) keyEquivalent:@""];
     [self.menu addItemWithTitle:@"Quit" action:@selector(_quit) keyEquivalent:@""];

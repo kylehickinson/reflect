@@ -74,6 +74,7 @@ NSString * const RFFileMonitorErrorDomain = @"RFFileMonitorErrorDomain";
     self.monitoringThread = [[NSThread alloc] initWithTarget:self selector:@selector(_monitorInBackground) object:nil];
     [self.monitoringThread start];
     
+    _monitoring = YES;
     if (_flags.respondsToDidBeginMonitoring) {
         [self.delegate fileMonitor:self didBeginMonitoringPath:self.path];
     }
@@ -84,6 +85,8 @@ NSString * const RFFileMonitorErrorDomain = @"RFFileMonitorErrorDomain";
     close(self.fileDescriptor);
     close(self.queue);
     [self.monitoringThread cancel];
+    
+    _monitoring = NO;
 }
 
 - (void)setDelegate:(id<RFFileMonitorDelegate>)delegate

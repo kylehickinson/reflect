@@ -31,7 +31,8 @@
      @"bonjour-name" : computerName,
      @"bonjour-use-type" : @NO,
      @"bonjour-type" : @"_reflect",
-     @"recent-files" : @[ ]
+     @"recent-files" : @[ ],
+     @"watch-files" : @YES
      }];
     
     // (Maybe) Start Reflect server.
