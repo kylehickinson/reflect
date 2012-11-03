@@ -186,25 +186,6 @@
     NSLog(@"Failed to resolve: %@", errorDict);
 }
 
-- (NSString *)_logPacketData:(uint8_t *)data size:(uint64_t)size detailed:(BOOL)detailed
-{
-    if (size == 0) return nil;
-    
-    NSMutableString *packetString = [NSMutableString string];
-    for (int i = 0, x = 0; i < size; i++) {
-        [packetString appendFormat:@"%02X ", data[i]];
-        
-        if (!detailed && (i > 16 && x == 0)) {
-            [packetString appendString:@"... "];
-            i = (size-16);
-            x = 1;
-        }
-    }
-    
-    NSArray *headers = @[ @"RFServerSendingDataInformation", @"RFServerSendingData", @"RFServerRequiresPasscode", @"RFServerReceivedInvalidPasscode" ];
-    return [NSString stringWithFormat:@"read (%@ : %lld bytes): %@", ((data[0]-RFServerSendingDataInformation) >= [headers count] ? nil : headers[data[0]-RFServerSendingDataInformation]), size, packetString];
-}
-
 - (void)_appendBytesAndCheck:(uint8_t *)bytes length:(NSInteger)length
 {
     if (length == 0) return;
@@ -228,7 +209,6 @@
     static NSMutableArray *packetLog = nil;
     
     if (self.data == nil) {
-        packetLog = [[NSMutableArray alloc] init];
         self.data = [[NSMutableData alloc] init];
     }
     
@@ -241,8 +221,6 @@
                     uint8_t buf[1024];
                     len = [self.inputStream read:buf maxLength:1024];
                     if (len > 0) {
-                        [packetLog addObject:[self _logPacketData:buf size:len detailed:NO]];
-                        
                         if (self.readingData) {
                             // Anything after the target data size is sent _should_ be image data.
                             // Also gotta make sure we got our first batch of data (with the begin header...)
@@ -311,7 +289,6 @@
         }
             
         case NSStreamEventEndEncountered: {
-            [packetLog removeAllObjects];
             [self stopStreaming];
             [self.delegate clientDidDisconnectFromService:self];
             

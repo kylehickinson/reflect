@@ -157,6 +157,10 @@
 
 - (void)client:(RFClient *)client didRecieveData:(NSData *)data
 {
+    // Make sure we only take image data.
+    UIImage *image = [UIImage imageWithData:data];
+    if (image == nil) return;
+    
     if (!self.imageView) {
         self.imageView = [[RFImageViewController alloc] initWithFrame:self.view.bounds];
         self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -169,7 +173,7 @@
     }
     
     self.imageView.showImageUpdateActivityIndicator = NO;
-    self.imageView.image = [UIImage imageWithData:data];
+    self.imageView.image = image;
 }
 
 - (void)client:(RFClient *)client didUpdateServicesList:(NSArray *)services
