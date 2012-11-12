@@ -312,6 +312,7 @@
     self.server.delegate = self;
     
     if ([userDefaults[@"server-start-on-launch"] boolValue]) {
+        self.server.name = userDefaults[@"bonjour-name"];
         [self.server start];
     }
     
@@ -330,6 +331,7 @@
     } else {
         [[self.menu itemAtIndex:2] setTitle:@"Server is starting…"];
         [[self.menu itemAtIndex:3] setTitle:@"Stop"];
+        self.server.name = [[[NSUserDefaultsController sharedUserDefaultsController] defaults] objectForKey:@"bonjour-name"];
         [self.server start];
     }
 }
